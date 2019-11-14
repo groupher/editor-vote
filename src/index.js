@@ -149,8 +149,10 @@ class Vote {
     }, true);
 
     this.api.listeners.on(bar, 'input', (ev) => {
-      const index = ev.target.parentNode['index'];
-      const value = ev.target.innerText;
+      const { parentNode, innerText } = ev.target
+
+      const index = parentNode['index'];
+      const value = innerText;
 
       this.data[index] = value;
     }, true);
