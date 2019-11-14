@@ -1,6 +1,7 @@
 /**
  * Build styles
  */
+require('./index.css').toString();
 
 /**
  * Import Tool's icon
@@ -142,12 +143,14 @@ class Vote {
     this.removeAllElements('.' + this.CSS.barAdder);
     this.removeAllElements('.' + this.CSS.barDeleter);
 
+    // line-break is not alloed
+    this.api.listeners.on(bar, 'keypress', (ev) => {
+      if (ev.which === 13) ev.preventDefault()
+    }, true);
+
     this.api.listeners.on(bar, 'input', (ev) => {
       const index = ev.target.parentNode['index'];
       const value = ev.target.innerText;
-      // console.log("index: ", index)
-      // console.log("value: ", value)
-      // console.log("this.data: ", this.data)
 
       this.data[index] = value;
     }, true);
